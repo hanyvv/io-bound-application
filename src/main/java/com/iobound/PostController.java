@@ -6,7 +6,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -26,5 +25,10 @@ public class PostController {
         return postRepository.findAll(
                 PageRequest.of(page - 1, PAGE_SIZE, Sort.by("id").descending())
         );
+    }
+
+    @GetMapping("/post/{id}")
+    public Post getPostById(@PathVariable("id") Long id) {
+        return postRepository.findById(id).get();
     }
 }
