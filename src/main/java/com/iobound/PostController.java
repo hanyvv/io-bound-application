@@ -6,6 +6,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RequiredArgsConstructor
 @RestController
@@ -30,5 +32,10 @@ public class PostController {
     @GetMapping("/post/{id}")
     public Post getPostById(@PathVariable("id") Long id) {
         return postRepository.findById(id).get();
+    }
+
+    @GetMapping("/search")
+    public List<Post> findPostsByContent(@RequestParam String content) {
+        return postRepository.findByContentContains(content);
     }
 }
