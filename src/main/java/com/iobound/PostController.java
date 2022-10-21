@@ -20,6 +20,7 @@ public class PostController {
     private final PostRepository postRepository;
     private final Producer producer;
     private final ObjectMapper objectMapper;
+    private final PostCacheService postCacheService;
 
     @PostMapping("/post")
     public Post createPost(@RequestBody Post post) throws JsonProcessingException {
@@ -30,6 +31,10 @@ public class PostController {
 
     @GetMapping("/posts")
     public Page<Post> getPostList(@RequestParam(defaultValue = "1") Integer page) {
+        if (page.equals(1)) {
+            return postCacheService.getFirstPostPage();
+        }
+
         return postRepository.findAll(
                 PageRequest.of(page - 1, PAGE_SIZE, Sort.by("id").descending())
         );
