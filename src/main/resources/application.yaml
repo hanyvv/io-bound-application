@@ -1,15 +1,10 @@
 spring:
-  datasource:
-    url: jdbc:postgresql://10.140.0.4:5432/postgresql
-    username: postgresql
-    password: postgrespassword
-  jpa:
-    show-sql: false
-    hibernate:
-      dialect: org.hibernate.dialect.PostgreSQLDialect
-      ddl-auto: update
   rabbitmq:
     host: 10.178.0.12
     username: guest
     password: guest
     port: 5672
+  data:
+    elasticserach:
+      host: 10.146.0.3,10.146.0.3,10.146.0.4,10.146.0.5
+      port: 9200
