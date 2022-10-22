@@ -7,11 +7,13 @@ import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.elasticsearch.repository.config.EnableElasticsearchRepositories;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Configuration
+@EnableElasticsearchRepositories(basePackageClasses = PostRepository.class)
 public class ElasticsearchConfig {
 
     @Value("#{'${spring.data.elasticsearch.hosts}'.split(',')}")
